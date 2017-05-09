@@ -1,0 +1,7 @@
+{
+  "name": "NodeJS PayPal Exchange Rate",
+  "description": "A small Node.js app that fetches and processes PayPal exchange rate",
+  "repository": "https://github.com/kmgalanakis/node-js-paypal-rate",
+  "logo": "https://www.domain.com/path-to-logo",
+  "keywords": ["node", "express", "paypal", "googleapi", "google sheets", "thingspeak", "dropbox"]
+}

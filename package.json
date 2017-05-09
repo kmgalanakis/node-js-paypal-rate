@@ -1,0 +1,38 @@
+{
+  "name": "node-js-paypal-rate",
+  "version": "0.0.1",
+  "description": "A small Node.js app that fetches and processes PayPal exchange rate.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "bluebird": "^3.5.0",
+    "dropbox": "^2.5.3",
+    "express": "^4.13.3",
+    "google-auth-library": "^0.10.0",
+    "googleapis": "^19.0.0",
+    "moment": "^2.18.1",
+    "moment-timezone": "^0.5.13",
+    "request": "^2.81.0",
+    "xml2js": "^0.4.17"
+  },
+  "engines": {
+    "node": "4.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kmgalanakis/node-js-paypal-rate"
+  },
+  "keywords": [
+    "node",
+    "express",
+    "paypal",
+    "googleapi",
+    "google sheets",
+    "thingspeak",
+    "dropbox"
+  ],
+  "author": "Konstantinos Galanakis <kmgalanakis@gmail.com>",
+  "license": "MIT"
+}
