@@ -1,11 +1,11 @@
-var config = require( './config.js' );
+require( 'dotenv' ).config();
 var dropboxModule = require( './modules/dropbox.js' );
 var googleDocsModule = require( './modules/googleDocs.js' );
 var paypalModule = require( './modules/paypal.js' );
 var express = require( 'express' );
 var app = express();
 
-app.set( 'port', ( config.AppPort ) );
+app.set( 'port', ( process.env.Port ) );
 app.use( express.static( __dirname + '/public' ) );
 
 app.get( '/googleapitoken', function( request, response ) {
@@ -20,7 +20,7 @@ app.get( '/trigger', function( request, response ) {
     response.send( 'Triggered!' );
   })
   .catch(function( error ) {
-    var errorMessage = 'Failed to authenticate!';
+    var errorMessage = 'Failed to authenticate! (' + error + ')';
     console.log( errorMessage );
     response.send( errorMessage );
   });

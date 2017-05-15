@@ -1,23 +1,26 @@
-var config = require( '../config.js' );
+
 var Promise = require( 'bluebird' );
 var dropbox = require( 'dropbox' );
-var dbx = new dropbox( { accessToken: config.DropboxAccessToken } );
+var dbx = new dropbox( { accessToken: process.env.DropboxAccessToken } );
 var fs = require( 'fs' );
+
+var TokenDir = ( process.env.HOME || process.env.HOMEPATH || process.env.USERPROFILE ) + '/.credentials/';
+var TokenPath = TokenDir + process.env.TokenName;
 
 function maybeTokenDownloadDropbox() {
   return new Promise( function( resolve, reject ) {
-    dbx.filesDownload( { path: '/' + config.TokenName } )
+    dbx.filesDownload( { path: '/' + process.env.TokenName } )
     .then( function( res ) {
       if ( undefined !== res.fileBinary ) {
         console.log( 'Token file found on Dropbox.' );
         try {
-          fs.mkdirSync( config.TokenDir );
+          fs.mkdirSync( TokenDir );
         } catch ( err ) {
           if ( 'EEXIST' != err.code ) {
             throw err;
           }
         }
-        fs.writeFile( config.TokenPath, res.fileBinary, 'binary', function( err ) {
+        fs.writeFile( TokenPath, res.fileBinary, 'binary', function( err ) {
           if ( err ) {
             return reject( 'Failed to create token file on the file system' );
           } else {
@@ -39,7 +42,7 @@ function maybeTokenDownloadDropbox() {
 }
 
 function storeTokenOnDropbox( token ) {
-  dbx.filesUpload({ path: '/' + config.TokenName, contents: JSON.stringify( token ) })
+  dbx.filesUpload({ path: '/' + process.env.TokenName, contents: JSON.stringify( token ) })
       .then(function( response ) {
         console.log( 'Token uploded to dropbox' );
       })

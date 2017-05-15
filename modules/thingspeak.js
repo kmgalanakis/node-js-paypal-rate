@@ -1,9 +1,8 @@
-var config = require( '../config.js' );
 var request = require( 'request' );
 
 function updateThingspeak( rate ) {
   request( {
-    url: 'https://api.thingspeak.com/update?key=' + config.ThingSpeakWriteAPI + '&field1=' + rate,
+    url: 'https://api.thingspeak.com/update?key=' + process.env.ThingSpeakWriteAPI + '&field1=' + rate,
     method: 'GET',
     timeout: 10000
   }, function( error, response, body ) {
@@ -15,6 +14,6 @@ function updateThingspeak( rate ) {
       console.log( 'error' + response.statusCode );
     }
   });
-};
+}
 
 exports.updateThingspeak = updateThingspeak;
