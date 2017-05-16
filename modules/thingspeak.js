@@ -2,7 +2,7 @@ var request = require( 'request' );
 
 function updateThingspeak( rate ) {
   request( {
-    url: 'https://api.thingspeak.com/update?key=' + process.env.ThingSpeakWriteAPI + '&field1=' + rate,
+    url: 'https://api.thingspeak.com/update?key=' + process.env.ThingSpeakWriteAPI + '&field1=' + rate + '&field2=' + ( rate * process.env.TargetAmmount ),
     method: 'GET',
     timeout: 10000
   }, function( error, response, body ) {
